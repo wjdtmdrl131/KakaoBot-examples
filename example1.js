@@ -1,3 +1,4 @@
+
 const prefix = "!";
 
 function getWeatherImage(area) {
@@ -36,8 +37,8 @@ function run(msg, type) {
 }
 
 function response(room, msg, sender, isGroupChat, replier, imageDB, packageName) {
-  if (msg.startsWith("!")) {
-    const command = msg.split("!")[1].split(" ")[0];
+  if (msg.startsWith(prefix)) {
+    const command = msg.split(prefix)[1].split(" ")[0];
     const message = msg.split(" ")[1];
     switch (command) {
       case "날씨":
