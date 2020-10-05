@@ -1,5 +1,5 @@
-
 const prefix = "!";
+const commandList = ["날씨", "runpy"];
 
 function getWeatherImage(area) {
   try {
@@ -30,9 +30,11 @@ function run(msg, type) {
       return getWeatherImage(msg);
     case 1:
       const result = runpy(msg).trim();
-      if (result == "")
-      return "No Result";
-      else return result;
+      if (result == "") {
+        return "No Result";
+      } else {
+        return result;
+      }
   }
 }
 
@@ -40,13 +42,8 @@ function response(room, msg, sender, isGroupChat, replier, imageDB, packageName)
   if (msg.startsWith(prefix)) {
     const command = msg.split(prefix)[1].split(" ")[0];
     const message = msg.split(" ")[1];
-    switch (command) {
-      case "날씨":
-        replier.reply(run(message, 0));
-        break;
-      case "runpy":
-        replier.reply("현재 사용이 불가능 합니다.");
-        break;
+    if (commandList.includes(command)) {
+      replier.reply(run(message, commandList.indexOf(command)));
     }
   }
 }
